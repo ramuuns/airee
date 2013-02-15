@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>PhoneGap WP7</title>
+    <link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title"
+        charset="utf-8" />
+    <link rel="stylesheet" href="landscape.css" type="text/css" media="screen and (min-width: 500px)" title="no title"
+        charset="utf-8" />
+    <link rel="stylesheet" href="landscape.css" type="text/css" media="screen and (orientation: landscape)" title="no title"
+        charset="utf-8" />
+    <!--[if IE]>
+        <style> html { height:107%; } </style>
+    <![endif]-->
+    
+</head>
+<body>
+    <div id="dayOfLB">
+    </div>
+    <div id="daysToLB">
+        <span id="daysToLBText"></span><span id="daysToLBCount"></span>
+    </div>
+    <div id="padomiLink">
+        <a href="padomi.html">Laivu brauciena <span class="accent">instrukcija</span></a></div>
+    <div id="adLink">
+        <a target="_blank" href="http://advanced-script-development.com/">Par ASD</a></div>
+    <div id="forumLink">
+        <a target="_blank" href="http://fizmati.lv/forums/thread-5393.html"><span class="accent">Iespamo</span> forumā</a></div>
+        <div id="refreshBar"><img id="refreshImg" alt="refresh" src="reload-icon-white.png"/></div>
+
+		<script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <!--<script type="text/javascript" src="jquery.mobile-1.0.1.min.js"></script>-->
+    <script type="text/javascript" src="countdown.js"></script>
+    <script type="text/javascript">
+
+    	
+
+    	var defaultData = {
+    		 'dates': [new Date("May 6, 2011 10:00:00"), new Date("May 4, 2012 10:00:00"), new Date("May 4, 2013 10:00:00")]
+			,'galleries': [
+				 { galleryId: 8, pictureCount: 30 }
+				, { galleryId: 9, pictureCount: 20 }
+				, { galleryId: 10, pictureCount: 38 }
+				, { galleryId: 11, pictureCount: 7 }
+				, { galleryId: 12, pictureCount: 40 }
+				, { galleryId: 16, pictureCount: 59 }
+				, { galleryId: 17, pictureCount: 40 }
+				, { galleryId: 18, pictureCount: 29 }
+				, { galleryId: 15, pictureCount: 64 }
+				, { galleryId: 42, pictureCount: 35 }
+				, { galleryId: 43, pictureCount: 45 }
+				, { galleryId: 44, pictureCount: 39 }
+				, { galleryId: 62, pictureCount: 120 }
+				, { galleryId: 77, pictureCount: 90 }
+				, { galleryId: 99, pictureCount: 115 }
+				, { galleryId: 100, pictureCount: 140 }
+				, { galleryId: 133, pictureCount: 85 }
+				, { galleryId: 146, pictureCount: 89 }
+				, { galleryId: 147, pictureCount: 59 }
+				, { galleryId: 165, pictureCount: 380 }
+			]
+			,'forum_url': 'http://fizmati.lv/forums/thread-5393.html'
+    	};
+
+    	var store = typeof window.localStorage !== "undefined" ? window.localStorage : window.Storage;
+
+    	function setLbData(data) {
+    		store.setItem("galleries", JSON.stringify(data.galleries));
+    		store.setItem("forum_url", data.forum_url);
+    		store.setItem("dates", JSON.stringify(data.dates));
+    		defaultData = data;
+    	}
+
+    	var baseUrl = "http://fizmati.lv/faili/foto/";
+
+    	if ( store.getItem("galleries") ) {
+    		var data = {
+    			 galleries : JSON.parse(store.getItem("galleries"))
+				,dates : JSON.parse(store.getItem("dates"))
+    			,forum_url : store.getItem("forum_url")
+    		}
+    		for ( var i = 0, l = data.dates.length; i < l; i++ ) {
+    			data.dates[i] = new Date(data.dates[i]);
+    		}
+    		defaultData = data;
+    	}
+
+    	var galleries = defaultData.galleries;
+
+    	var lbDates = defaultData.dates;
+
+
+    	function findLastDate() {
+    		var now = Date.now();
+    		var closest = lbDates[0];
+    		for (var i = 0, l = lbDates.length; i < l; i++) {
+    			if (lbDates[i] > closest && lbDates[i] <= now) {
+    				closest = lbDates[i];
+    			}
+    		}
+    		var cl = new Date();
+    		cl.setFullYear(closest.getFullYear(), closest.getMonth(), closest.getDate());
+    		return cl;
+    	}
+
+    	function findNextDate() {
+    		var now = Date.now();
+    		var closest = null;
+    		for (var i in lbDates) {
+    			if ((closest == null || lbDates[i] < closest) && lbDates[i] >= now) {
+    				closest = lbDates[i];
+    			}
+    		}
+    		return closest;
+    	}
+    	function millisecsToLB() {
+    		var closest = findNextDate();
+    		if (closest == null) {
+    			return null;
+    		}
+    		return closest - Date.now();
+    	}
+    	function dayOfLB() {
+    		var now = Date.now();
+    		var millisecs = now - findLastDate();
+    		return Math.floor(millisecs / (1000 * 60 * 60 * 24)) + 1;
+    	}
+
+    	function setBgImg() {
+    		var r = Math.random();
+    		var gallery = Math.round(r * (galleries.length - 1));
+    		r = Math.random();
+    		var picture = Math.round(r * (galleries[gallery].pictureCount - 1)) + 1;
+
+    		var link = baseUrl + galleries[gallery].galleryId + "/large/" + picture + ".jpg";
+
+    		var bgimg = new Image();
+    		bgimg.src = link;
+    		bgimg.onload = function () {
+    			$("body").css("background-image", "url(" + link + ")");
+    		}
+    	}
+
+    	function onDeviceReady() {
+    		$("#refreshImg").click(function () {
+    			setBgImg();
+    			return false;
+    		});
+
+    		$("#forumLink a").attr("href", defaultData.forum_url);
+
+    		setBgImg();
+
+    		var diena
+    		$("#dayOfLB").html("Šī ir laivu brauciena <span class='accent'>" + dayOfLB() + "</span>. diena");
+
+    		var millisecsTo = millisecsToLB();
+    		if (millisecsTo != null) {
+    			$("#daysToLBText").text("Līdz laivu braucienam ir  ");
+    			ActivateCountDown("daysToLBCount", parseInt(millisecsTo / 1000));
+    		} else {
+    			$('#daysToLB').hide();
+    		}
+    	}
+
+    	var script = document.createElement("script");
+    	script.type = "text/javascript";
+    	script.src = "http://airee.enkurs.org/lb-data.js?"+Math.random();
+    	document.body.appendChild(script);
+
+    	$(document).ready(onDeviceReady);
+
+    </script>
+</body>
+</html>

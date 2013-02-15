@@ -1,0 +1,109 @@
+
+html, body
+{
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow:hidden;
+}
+body
+{
+    height:100%;
+    background: #000 url(76.jpg) no-repeat fixed center center;
+    color: #ccc;
+    font-family: Helvetica, Verdana, Geneva, sans-serif;
+    margin: 0;
+    border-top: 1px solid #393939;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.accent
+{
+    color: #FFA400;
+}
+
+h1
+{
+    text-align: center;
+    font-size: 18px;
+    color: #FFC312; /* Mango me! */
+}
+
+a
+{
+    color: #EEE;
+    text-decoration: none;
+}
+
+body > div
+{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#dayOfLB
+{
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    max-width: 90%;
+    margin-right: 0px;
+    padding: 10px 15px;
+    font-size: 14pt;
+    color: white;
+}
+
+#daysToLB
+{
+    color: white;
+    position: absolute;
+    top: 120px;
+    width: 90%;
+    margin-left: 0px;
+    padding: 10px 15px;
+    font-size: 14pt;
+}
+
+#daysToLBCount
+{
+    display: block;
+}
+
+#padomiLink
+{
+    position: absolute;
+    bottom: 40px;
+    padding: 5px 10px;
+}
+
+#adLink
+{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 5px 10px;
+}
+
+#forumLink
+{
+    position: absolute;
+    bottom: 90px;
+    padding: 5px 10px;
+    right: 0px;
+}
+
+#refreshBar
+{
+    position: absolute;
+    right: 10px;
+    bottom: 170px;
+    background: transparent;
+}
+
+#refreshImg
+{
+    opacity: 0.5;
+}
+

@@ -1,0 +1,20 @@
+﻿#dayOfLB
+{
+    top: 30px;
+    right: 0px;
+    margin-right: 10px;
+    
+}
+
+#daysToLB
+{
+    top: 90px;
+    width: 75%;
+    margin-left: 20px;
+}
+
+#refreshBar
+{
+    left: 10px;
+    bottom: 100px;
+}

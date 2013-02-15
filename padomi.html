@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>PhoneGap WP7</title>
+    <!--<link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title"
+        charset="utf-8" />-->
+    <link rel="stylesheet" href="instrukcija.css" type="text/css" />
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        
+        $(onDeviceReady);
+
+
+        var baseUrl = "http://fizmati.lv/faili/foto/";
+
+        var isiPad = navigator.userAgent.match(/iPad/i) != null;
+        var isiPhone = navigator.userAgent.match(/iPhone/i) != null;
+
+        var isiOS = isiPad || isiPhone;
+
+        function onDeviceReady() {
+            //var name = device.name;
+            if (isiOS) {
+                $(document.body).addClass('ios');
+                $("#back").click(function () {
+                    window.location.href = 'index.html';
+                    return false;
+                });
+            }
+
+
+
+            $('#imgOverlay, #imgOverlay img').click(function () {
+                $('#imgOverlay').hide();
+            });
+
+           /* $(window).scroll(function () {
+                if ($('#imgOverlay').is(':visible')) {
+                    $('#imgOverlay').hide();
+                }
+            });*/
+
+            $(window).resize(function () {
+                if ($('#imgOverlay').is(':visible')) {
+                    $('#imgOverlay').css("top", $(window).scrollTop());
+                    var img = new Image();
+                    img.src = $('#photo')[0].src;
+                    img.onload = imgonload;
+                }
+            });
+
+            var imgonload = function () {
+                var img = document.getElementById('photo');
+                var sw = $(window).width();
+                var sh = $(window).height();
+                var w = this.width;
+                var h = this.height;
+
+                var scTan = sh / sw;
+                var imgTan = h / w;
+
+                if (scTan < imgTan) {
+                    $(img).css({
+                        'height':$(window).height(),
+                        'width': 'auto',
+                        'margin-top': 'auto'
+                       });
+                    $(img).css({ 'margin-left':(sw-img.width)/2+'px'
+                    });
+                    //$(img).css({'width':'auto');
+                    
+                } else if (scTan > imgTan) {
+                    //$(img).css('height', 'auto');
+                    //$(img).css('width', $(window).width());
+                    $(img).css({
+                        'width': $(window).width(),
+                        'height': 'auto',
+                        'margin-left':'auto'
+                     });
+                    $(img).css({    
+                        'margin-top': (sh - img.height) / 2 + 'px'
+                    });
+                }
+
+                /*if (w > $(window).width()) {
+                $(img).css('width', $(window).width());
+                }*/
+            }
+
+            $(".message a.img").click(function () {
+                //event.preventDefault();
+                //alert(baseUrl + gallery + "/" + photo + ".jpg");
+                //$("#photo").attr("src", baseUrl + gallery + "/large/" + photo + ".jpg");
+                var img = document.getElementById('photo');
+                img.src = "";
+                img.src = $(this).attr("href");
+                img.onload = imgonload;
+                $('#imgOverlay').css("top", $(window).scrollTop());
+                $("#imgOverlay").show();
+                return false;
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="bar"><div id="back" class="body"><div><span></span></div><p>Back</p></div></div>
+    <div id="imgOverlay"><img id="photo" src="" alt="Ilustrācija" /></div>
+    <div id="wrap">
+    <h1>17 pavasara ieteikumi jeb Laivu brauciena ilustrētā instrukcija, 3. izdevums.</h1>
+    <h2>Ornitologs <a href="https://twitter.com/fufuks">Andris</a> feat. <a href="https://twitter.com/mundris">@mundris</a></h2>
+    <h2>Attēliem bagātināts, patīkamas atmiņas rosinošs, subjektīvs skatījums par norisēm brauciena laikā, darināts īsas lietotāja rokasgrāmatas formātā.</h2>
+    <div class="comment">
+        <div class="message">
+            <h3>1. Priekšdarbi jeb nelaime nenāk brēkdama.</h3>
+            <div class="pantins">
+                Mājās, liekot lietas somā,<br/>
+                Visu labi jāpārdomā.<br/>
+                Ko drīkst pakāst kaut tūdaļ.<br/>
+                Ko būs atvest atpakaļ.<br/>
+            </div>
+           Nelaime nenāk brēkdama. Nekad neuzticies vecmāmiņai, kad tā saka, ka visas svarīgās lietas viņa jau ir sapakojusi. Tā nebūt nebūs. Domā līdzi! Netici nevienam, pat sev ne! Dažas lietas, kas noderēs noteikti - <a href="http://fizmati.lv/faili/foto/100/large/87.jpg" class="img">lukturītis nakts trasei</a>, glābšanas veste (jā, jā, tā nevienam nevajadzīgā manta, ko velk tikai mīkstie). Arī rezerves zeķes, bikses un tamlīdzīgs ekipējums noder. No makgaiverenes (spīdīgās santehniskās līmlentas) var izgatavot visu un ar to <a href="http://fizmati.lv/faili/foto/77/large/43.jpg" class="img">var salabot visu</a>. Ļoti ieteicams atribūts. Prīmuss vai sērkociņi + <a href="http://fizmati.lv/faili/foto/147/large/20.jpg" class="img">cirvis</a> / <a href="http://fizmati.lv/faili/foto/165/large/94.jpg" class="img">zāģis</a> arī tradiconāli tiek uzskatīti par noderīgiem. Kāds plāksterītis uz visu baru arī neskādēs. Ja tu izskaties <a href="http://fizmati.lv/faili/foto/42/large/12.jpg" class="img">šādi</a>, tu pilnīgi noteikti esi (pār)gatavs.
+        </div>
+        <div class="message">
+            <h3>2. Kalorijas un grādi jeb zini savu (iz)mēru.</h3>
+            <div class="pantins">
+                Divas pudeles un speķis,<br/>
+                Kaimiņjankam nosperts deķis,<br/>
+                Komplekts viegls, bet ātri gaistošs,<br/>
+                Rīt šis jautājums būs saistošs.<br/>
+            </div>
+            Padomā, ko ēdīsi un dzersi <a href="http://fizmati.lv/faili/foto/62/large/98.jpg" class="img">pēdējā ceļojuma dienā no rīta</a>. <a href="http://fizmati.lv/faili/foto/62/large/70.jpg" class="img">Esi gatavs</a>. Parasti ir novērojamas divas galējības – atklāta badošanās, vai arī <a href="https://lh5.googleusercontent.com/-9EPKmlqKCUQ/URviTgA37tI/AAAAAAAAC0g/rzryBbDxz-Q/s800/_2562721276.jpg" class="img">no produktiem lūstoši galdi</a>, <a href="http://fizmati.lv/faili/foto/62/large/16.jpg" class="img">uzspēlēts buržujisms</a> un pārtikas produktu pārvadāšana milzīgos apjomos maršrutā Rīga – Upe – Rīga. Ja abas grupas sadarbojas, ir labi, bet ne vienmēr tas notiek. Novērojums no dzīves - dažiem nepatīk (ar vārdu "nepatīk" es domāju "NEPATĪK"), ka no viņiem nepārtraukti diedelē dzērienus. <a href="http://fizmati.lv/faili/foto/165/large/289.jpg" class="img">Mokas inspekcija</a> ir kas pilnīgi cits - tur viss notiek oficiāli un pēc protokola. ACHTUNG! Lietojot <a href="http://fizmati.lv/faili/foto/146/large/25.jpg" class="img">kofeīnu saturošus dzērienus</a>, novērojams Ēvalds un smagas realitātes nobīdes no vēlamā šķituma par laika ritējumu. Arī cita veida lietošana neganti <a href="http://fizmati.lv/faili/foto/15/large/10.jpg" class="img">kaitē jūsu reputācijai</a>.
+        </div>
+        <div class="message">
+            <h3>3. Ūdens ir visur jeb cīņa ar stihiju.</h3>
+            <div class="pantins">
+                Nezini, vai stūrēt mācēs<br/>
+                Laivu stūrman’s šajās krācēs?<br/>
+                Aizsargtērpu virsū velc!<br/>
+                Sausa pakaļa ir zelts.<br/>
+            </div>
+            Padomājiet par to, kas notiks, ja <a href="http://fizmati.lv/faili/foto/100/large/44.jpg" class="img">jūsu kājas nokļūs mitrumā</a>, kas visticamāk arī notiks. Piemēroti apavi (arī rezerves), vilnas un neoprēna zeķes, maisiņi, izolācijas lenta un iztēle lai ir jūsu sabiedrotie. Padomājiet arī par ūdensdrošu iepakojumu guļammaisam, kurā gulēsiet! Hidrosoma (ūdensizturīgs, hermētiski noslēdzams maiss) risina šo problēmu. Ja jums paveiksies - tiksiet cauri sveikā. Ja nē - <a href="https://lh5.googleusercontent.com/-1G2uCVnZNcs/URviSFIRkOI/AAAAAAAAC0E/Ge07pTJJBUA/s664/IMG_2864.JPG" class="img">slapjā pakaļa būs slapja</a>.
+        </div>
+        <div class="message">
+            <h3>4. Guļammaiss un sejaskrēms jeb pasaka par Sivēnu un Kodolziemu.</h3>
+            <div class="pantins">
+                Vēsta medicīnas sējums:<br/>
+                Apdegumiem palīdz krējums.<br/>
+                Bet, ja galvu skāris sals,<br/>
+                Jāamputē degungals.<br/>
+            </div>
+            Sena teika vēsta, ka LB ir pretstatu un kontrastu laiks. Ugunskurā apdegušas drēbes blakus apsarmojušai teltij un jaukajā <a href="http://fizmati.lv/faili/foto/10/large/22.jpg" class="img">saulainajā dienā</a> saulē <a href="https://lh6.googleusercontent.com/-oQbeClubRw4/URviTCesFDI/AAAAAAAAC0Q/7bETuDQYAGE/s541/P5030256.JPG" class="img">apdegusi miesa</a>, kas <a href="http://fizmati.lv/faili/foto/146/large/23.jpg" class="img">kodolziemā</a> dreb plānajā guļammaisā vai tēlo <a href="https://lh4.googleusercontent.com/-Wy1TWTdhTkk/URviS0gp6PI/AAAAAAAAC0I/IGbddf3g4Do/s664/P5020192.JPG" class="img">kartupeli</a>. Daži <a href="http://fizmati.lv/faili/foto/100/large/66.jpg" class="img">sarga sevi brauciena laikā</a>, daži mēģina <a href="https://lh5.googleusercontent.com/-1huIhivKuvU/URviTYOnALI/AAAAAAAAC0U/mJXTdgaXPpA/s498/P5030259.JPG" class="img">saglābt sava ķermeņa paliekas</a> pēc atgriešanās civilizācijā.
+         </div>
+        <div class="message">
+            <h3>5. Ūdens ne no upes jeb Nedzer no peļķītes, par kazlēnu kļūsi.</h3>
+            <div class="pantins">
+                Aizgūtnēm kas šņabi dzer,<br/>
+                Rītā kausu rokā tver,<br/>
+                Dzer pa taisno viņš no upes,<br/>
+                Jau pēc dienas krūmos tupēs.<br/>
+            </div>
+            Bieži var dzirdēt leģendas par malku ne no meža, ūdeni ne no upes un sievietēm ne no nometnes. Runā, ka daļu no šīm lietām varot arī novērot dzīvē. Cik tur taisnības, cik māņu, par to spriest katram pašam, taču praksē pārbaudīts, ka <a href="https://lh5.googleusercontent.com/-PRoxB0ZptXo/URviRWMlGsI/AAAAAAAACzo/1Rv0I7qycoo/s720/226198_210129485673786_6982050_n.jpg" class="img">ūdens no upes</a>, kaut no sudraba kausiņa, lai cik gards šķistu dzeršanas brīdī, var nest sev līdzi sekas atgriežoties mājās. Ja jums garšo buljons un sausiņi (vai esat stipra kuņģa īpašnieks) - uz priekšu!
+            </div>
+        <div class="message">
+            <h3>6. Saderīgs un pilnīgs ekipējums jeb tavas mugursomas iņ un jaņ.</h3>
+            <div class="pantins">
+                Konservu ja somā liek,<br/>
+                Ar to bieži nepietiek.<br/>
+                Vajag arī paņemt plīti,<br/>
+                Kaut vai komandai par spīti.<br/>
+            </div>
+            Ja ņemat līdzi <a href="http://fizmati.lv/faili/foto/17/large/27.jpg" class="img">konservus</a>, vajag arī nazi vai attaisāmo. Ja gribēsiet uzvārīt un izgāzt zupu, <a href="http://fizmati.lv/faili/foto/77/large/55.jpg" class="img">paņemiet arī katlu</a>. Aizmirstajiem plosta ventiļiem būs jābrauc pakaļ uz Rīgu. Vienkārši, bet sāpīgi. Dažkārt gan nepieciešamo ekipējumu ir iespējams <a href="http://fizmati.lv/faili/foto/99/large/74.jpg" class="img">radīt uz vietas</a>. <a href="http://fizmati.lv/faili/foto/165/large/50.jpg" class="img">Jauni</a> vai <a href="http://fizmati.lv/faili/foto/10/large/32.jpg" class="img">tradicionāli</a> tērpi, kā arī <a href="http://fizmati.lv/faili/foto/44/large/39.jpg" class="img">karogi</a> ļaus justies pamanāmam uz vispārējā fona. Arī esošā apģērba neatbilstība vēlamajam bieži rada <a href="http://fizmati.lv/faili/foto/146/large/31.jpg" class="img">jaunas modes tendences</a>. Piemēram, <a href="http://fizmati.lv/faili/foto/17/large/14.jpg" class="img">šorti un ziemas jaka</a> - kāpēc gan ne? Ja nav līdzi pat šāda lieka apģērba, nāksies <a href="http://fizmati.lv/faili/foto/8/large/17.jpg" class="img">slapjās lietas žāvēt</a>. Lāpsta būs jūsu glābējs no <a href="http://fizmati.lv/faili/foto/165/large/171.jpg" class="img">uguns</a> un sūdiem. Veselības ministrija un <a href="http://fizmati.lv/faili/foto/146/large/15.jpg" class="img">Dace Contex Rauze</a> iesaka - drāz ko drāzdams, <a href="http://fizmati.lv/faili/foto/77/large/57.jpg" class="img">pasargā galu</a>.
+        </div>
+        <div class="message">
+            <h3>7. Laivas biedra izvēle jeb Centis Veiklums - tavs otrais vārds.</h3>
+            <div class="pantins">
+                Pirms ar kādu plostot doties,<br/>
+                Vajag abiem izskaidroties,<br/>
+                Kad kurš airēs, kad kurš dzers,<br/>
+                Meitās ies vai zivis ķers.<br/>
+            </div>
+            Ir labi, ja foršais džeks/džuse laivas aizmugurē māk arī airēt. Jābūt uzmanīgam, jo pārinieks pēkšņi var izrādīties psihopāts, kas <a href="http://fizmati.lv/faili/foto/43/large/44.jpg" class="img">airē acis pārgriezis</a>, nepievēršot uzmanību jaukajiem dabasskatiem, kliedz  „Airē, airē, mums jābūt pirmajiem" vai arī ir nelabojams bremze, kas <a href="http://fizmati.lv/faili/foto/77/large/39.jpg" class="img">airi ūdenī iemērc reizi stundā</a>.  Vai arī meitene, kura brauc jūsu laivā, nepārtraukti flirtē ar blakus laivās braucošajiem puišiem, makšķerniekiem un visiem citiem, <a href="http://fizmati.lv/faili/foto/15/large/25.jpg" class="img">tikai ne ar jums</a>. Par to der padomāt. Vēl laivas biedrs var izrādīties <a href="http://fizmati.lv/faili/foto/12/large/9.jpg" class="img">grādīgās dziras mīļotājs</a>, kas, saulei austot, saka: "aizved mani mājās...", noliekas laivā gulēt un jūs viņu vizināt līdz finišam viens. Nepazīstami laivasbiedri mēdz izrādīties arī slinki, vienkārši neapdāvināti un <a href="http://fizmati.lv/faili/foto/44/large/34.jpg" class="img">iecerētajai ekspluatācijai nepiemēroti</a>. Ir sastopamas <a href="http://fizmati.lv/faili/foto/62/large/60.jpg" class="img">sievietes, kas strādā</a>, bet to, kas nestrādā, <a href="http://fizmati.lv/faili/foto/62/large/63.jpg" class="img">ir trīsreiz vairāk</a>. Var gadīties, ka neapmierinātie komandas biedri <a href="http://fizmati.lv/faili/foto/100/large/115.jpg" class="img">atstāj jūs salstam</a>.
+        </div>
+        <div class="message">
+            <h3>8. Telts biedra izvēle jeb murrātājs tev blakus.</h3>
+            <div class="pantins">
+                Kāds pa tumsu telti taisa,<br/>
+                Cits jau sen krāc guļammaisā.<br/>
+                Taisnības virs zemes nav,<br/>
+                Guļammaiss ir katram savs.<br/>
+            </div>
+            Krācējus ieteicams izmitināt vienā teltī. Mītot vienā teltī ar <a href="http://fizmati.lv/faili/foto/15/large/43.jpg" class="img">blandoņu-tusētāju</a>, jūs riskējat tapt pamodināts nakts vidū, kad viņš jums mēģina gulēt cieši blakus, sasedzoties ar jūsu guļammaisu. Loģiski, ka šādi indivīdi <a href="http://fizmati.lv/faili/foto/165/large/298.jpg" class="img">turpina gulēt</a> līdz brīdim, kad visi nometni sen jau pametuši. Guļammaisa neņemšana līdzi gan ļoti veicina <a href="http://fizmati.lv/faili/foto/43/large/5.jpg" class="img">jaunu paziņu iegūšanu</a>, bet viņi nav pārāk priecīgi, ka visa uzmanība tiek pievērsta viņu guļammaisam. Liels bonuss, ja telts īpašnieks <a href="http://fizmati.lv/faili/foto/16/large/40.jpg" class="img">prot savu īpašumu salikt tumsā</a>. Ja teltī <a href="http://fizmati.lv/faili/foto/42/large/22.jpg" class="img">kāds kaut ko dara</a>, netraucē. Ja telti izmantot neplānojat, padomājiet (vēlams arī iegādāties) par <a href="http://fizmati.lv/faili/foto/16/large/20.jpg" class="img">āra guļammaisu</a> vai <a href="http://fizmati.lv/faili/foto/99/large/75.jpg" class="img">matracīti</a>, kurā jūs ievīstīs, kad komatozā stāvoklī mētāsieties pie ugunskura. <a href="http://fizmati.lv/faili/foto/99/large/94.jpg" class="img">Jaunas pārnakšņošanas konstrukcijas</a> vienmēr tiek uzņemtas ar sajūsmu.
+            </div>
+        <div class="message">
+            <h3>9. Laivas un ekipējuma izvēle jeb <a href="http://fizmati.lv/faili/foto/165/large/125.jpg" class="img">miklais lēciens</a> nezināmajā.</h3>
+            <div class="pantins">
+                Paniku nav jāsāk radīt,<br/>
+                Ja kāds neprot laivu vadīt.<br/>
+                Iesēdini viņu plostā,<br/>
+                Tur viņš būs kā miera ostā.<br/>
+            </div>
+            Braucamie mēdz būt <a href="http://fizmatdienas.lv/img/galleries/large/1344.jpg" class="img">visdažādākie</a>, tomēr laivu braucienā izmantojot <a href="http://fizmati.lv/faili/foto/62/large/83.jpg" class="img">laivu, kuras vadīšanu labi nepārzināt</a>, var gadīties, ka <a href="http://fizmati.lv/faili/foto/15/large/39.jpg" class="img">peldes</a> notiek krietni biežāk, nekā varētu vēlēties. Bieži vien <a href="http://fizmati.lv/faili/foto/147/large/32.jpg" class="img">lielāks ir labāks</a>, bet ne vienmēr. Ja gribat braukt droši, jālieto glābšanas veste. Vēl pirms laivas iznomāšanas ir ieteicams pārliecināties, vai laivai dibenā nav liels caurums, kas tur ierīkots speciāli jūsu mantu saslapināšanai. <a href="http://fizmati.lv/faili/foto/100/large/109.jpg" class="img">Motors</a> – tas, protams, ir forši, bet <a href="http://fizmati.lv/faili/foto/99/large/117.jpg" class="img">airi arī dažreiz noder</a>. Vēlams, lai līdzi paņemto airu lāpstiņas laukums būtu lielāks nekā jūsu <a href="http://fizmati.lv/faili/foto/8/large/6.jpg" class="img">zupas karotei</a>, bet mazāks kā <a href="http://fizmati.lv/faili/foto/8/large/28.jpg" class="img">sniega lāpstai</a>. Remonta komplekts ir ļoti vēlama ekstra, lai nebūtu jādodas <a href="https://lh3.googleusercontent.com/-pU8sNbEDvJc/URviRuMioSI/AAAAAAAACzs/8CexC8JWlsQ/s870/IMG_0830_edited-3.jpg" class="img">ilgajā ceļā gar krastu</a>. Ja braucamais ir piepūšams un ar vecumu, kas pārsniedz jūsējo, ir diezgan ticams, ka tas <a href="http://fizmati.lv/faili/foto/44/large/18.jpg" class="img">izdala gāzes</a>. Nekur jau nav jāsteidzas, un gaisa atmosfērā pietiek, tomēr pirms sacīt kvēlo „jā” vilinošajam piedāvājumam, apdomājiet savas un iecerētā braucamrīka spējas. Ne vienmēr lepnais nosaukums „10vietīgs plosts” nozīmē plašu mitekli 10 rumpīgiem tēvaiņiem, viņu mantām, alus mučelei un ēdmaņai. Cenas ziņā Maximas peldlīdzekļu piedāvājums bieži ir neatvairāms kā ātrais kredīts, tomēr, iekrāmējot tajā sievu un <a href="http://fizmati.lv/faili/foto/147/large/23.jpg" class="img">dodoties pretī piedzīvojumam</a>, jāapzinās, ka piedzīvojums var <a href="http://fizmati.lv/faili/foto/147/large/24.jpg" class="img">pārvērsties pieredzē</a>.
+            </div>
+        <div class="message">
+            <h3>10. Laivas vadīšana un uzvedība tajā jeb slapjš un bez žēlastības.</h3>
+            <div class="pantins">
+                Kas bez prāta laivā kāpj,<br/>
+                Savu pārinieku krāpj.<br/>
+                Īriens, plunkšķis, skaļi lāsti -<br/>
+                Bieži šādi bēdu stāsti.<br/>
+            </div>
+            Ja upes vidū ir akmens, jūs to taranēsiet. Ja akmenim ir asas malas, jūs lāpīsiet laivu. Nesaskaņotas darbības laivā bieži beidzas ar <a href="http://fizmati.lv/faili/foto/133/large/30.jpg" class="img">peldi</a>. Ja dzirdat pieminam jūsu vārdu saistībā ar dažādiem kokiem vai to daļām, labais tonis paredz palikt sēdus un pat nedaudz pieliekties, nevis izslieties un miglaini vērties tālē, cenšoties saskatīt strauji tuvojošos dabas parādību. Ja upē ir straume, pie kokiem nav jāķeras klāt. <a href="http://fizmati.lv/faili/foto/62/large/84.jpg" class="img">Piespiežoties</a> ar laivu pie koka vai klints, no tā nav jābaidās. Nedaudz atslogojiet bortu, kas atrodas straumes (nevis klints) pusē un centieties tikt no piespiedes ārā. <a href="http://fizmati.lv/faili/foto/43/large/30.jpg" class="img">Uzticams kapteinis</a> (vēlams viens, nevis vairāki, lai neizceltos domstarpības) ir zelta vērts (viņu vajag klausīt), palīdzība nelaimē nonākušajiem – obligāta. Ja esat gana veikls, varēsiet savu viedokli kolēģiem izteikt <a href="http://fizmatdienas.lv/img/galleries/large/1248.jpg" class="img">stāvus</a>.
+          </div>
+        <div class="message">
+            <h3>11. Izkāpšana krastā jeb Dublis 2.</h3>
+            <div class="pantins">
+                Jauka izkāpšana krastā<br/>
+                Pārvērsties var peldē prastā,<br/>
+                Ja bez apdomas to dara.<br/>
+                Katrs solis šeit no svara.<br/>
+            </div>
+            Lielākā daļa slapjo piedzīvojumu notiek pie <a href="http://fizmati.lv/faili/foto/147/large/57.jpg" class="img">iekāpšanas</a> un <a href="http://fizmati.lv/faili/foto/146/large/88.jpg" class="img">izkāpšanas</a> no laivas. To var izdarīt vai nu <a href="http://fizmati.lv/faili/foto/146/large/5.jpg" class="img">eleganti</a>, vai arī <a href="http://fizmati.lv/faili/foto/165/large/11.jpg" class="img">šādi</a>. Bieži cilvēki izvēlas taisnāko (stāvāko un bieži arī <a href="http://fizmati.lv/faili/foto/12/large/13.jpg" class="img">dubļaināko</a>) ceļu, lai gan šķietami nepieejamajā kraujā var uzkāpt arī mazāk pazemojošos veidos. Ja visu izbradātais līcītis neliekas īsti piemērots, bieži turpat blakus būs gluži <a href="http://fizmati.lv/faili/foto/100/large/19.jpg" class="img">pieklājīga piestāšanās vieta</a>.
+            </div>
+        <div class="message">
+            <h3>12. Sports un Spirts jeb klunkšķošā korupcija.</h3>
+            <div class="pantins">
+                Trešo reizi aizsāk kašķi<br/>
+                Tiesnesis ar tukšu blašķi.<br/>
+                Diskvalificēs viņš tos,<br/>
+                Kas tam šņabi neiedos.<br/>
+            </div>
+            <a href="http://fizmati.lv/faili/foto/133/large/73.jpg" class="img">Sportiskas nodarbes</a> laivu brauciena laikā – tas ir lieliski un apsveicami! <a href="http://fizmati.lv/faili/foto/100/large/82.jpg" class="img">Spiedzošās fanes un plīvojošie karogi</a> to tik vien gaida. Bet jāpadomā arī par <a href="http://fizmati.lv/faili/foto/10/large/18.jpg" class="img">cilvēkiem</a>, kas šo izklaidi jums nodrošina. Ja <a href="http://fizmati.lv/faili/foto/99/large/62.jpg" class="img">tiesnešiem slāpst</a>, veldzējiet viņu nepiepildāmās mutes. Ja tiesnesis jau ir <a href="http://fizmati.lv/faili/foto/77/large/56.jpg" class="img">normālā tiesnesī</a>, viņu var arī nomainīt. Pie <a href="https://lh5.googleusercontent.com/-MG2MlFItHd4/TPfZm_HLDAI/AAAAAAAAChQ/YiMQz6mTOqk/s650/FMDOgre04_net_11.jpg" class="img">vērtīgām balvām</a> visvieglāk tikt, kombinējot <a href="http://fizmati.lv/faili/foto/133/large/16.jpg" class="img">pārrunas</a> ar nelielu devu <a href="http://fizmatdienas.lv/img/galleries/large/1473.jpg" class="img">glaimu</a>. Var iet arī sarežģītāko ceļu - lai neapmaldītos, jums izsniegs <a href="http://fizmati.lv/faili/foto/165/large/53.jpg" class="img">kartes</a>, būs <a href="http://fizmati.lv/faili/foto/43/large/38.jpg" class="img">jāairē</a>, <a href="https://lh6.googleusercontent.com/-jCSXZPVvXTE/URviUdutR7I/AAAAAAAAC04/3NpR8sUPy7E/s800/_9816236668.jpg" class="img">jānes sievietes</a>, <a href="https://lh3.googleusercontent.com/-DDOnOXJrgi8/TPfZ3AzRd9I/AAAAAAAACis/Mb5zBUA64aw/s879/FMDOgre04_4_edited.jpg" class="img">atkal jāairē</a>, un to visu vērtēs <a href="http://fizmati.lv/faili/foto/133/large/63.jpg" class="img">korumpēti un subjektīvi tipāži</a>. Bet labi vien ir, jo galu galā katram ir jādod savs <a href="http://fizmati.lv/zinas/notikumi/lb_039_11_gada_ieguldijums_sporta_attistiba">ieguldījums sporta attīstībā</a>.
+        </div>
+        <div class="message">
+            <h3>13. Nekā lieka jeb Dārgās tehnikas spožums un posts.</h3>
+            <div class="pantins">
+                Runā tu pa rāciju?<br/>
+                Brauc ar navigāciju?<br/>
+                Gribi laikam līdzi stāvēt?<br/>
+                Nāksies slapjās lietas žāvēt.<br/>
+            </div>
+            21. gadsimtā cilvēki mēdz apaugt ar <a href="http://fizmati.lv/faili/foto/77/large/65.jpg" class="img">dažādām ierīcēm</a>. Laivu brauciens ir īstā vieta jūsu fotoaparātam, lai tvertu mirkli, kas zūd nebūtībā. Tomēr daudz mazāk raižu būs, ja tas būs ūdensdrošs vai vismaz labi iepakots. Tas pats attiecas uz mobilajiem telefoniem. Pēdējo pasargāšanai ir vairākas metodes – speciāli tam paredzēti ūdensdroši, peldoši iepakojumi, kā arī vecā, labā metode ar prezervatīvu, kas paredz arī opciju „divi vienā” (domāti divi telefoni). Šādi iepakotam telefonam ir savi plusi un mīnusi: tas nepeld, bet var mēģināt sarunāties ar zivīm. Lai cik izturīgas lietas izskatās, tās mēdz arī salūzt. <a href="http://fizmati.lv/faili/foto/44/large/21.jpg" class="img">Arī tilts</a>. Vērtīgās mantas ieteicams uzmanīt cieši jo cieši, diemžēl tās mēdz arī pazust, visbiežāk nakts un agra rīta laikā. Mazo zaglēnu apciemojuma gadījumā svarīgi ir cilvēki, kas neguļ līdz rītam, vai sakari ar <a href="http://fizmati.lv/faili/foto/77/large/86.jpg" class="img">vietējiem iedzīvotājiem</a>. Daudzas zudušas mantas atgriežas pie saimniekiem, ja tie atstāj savu telefona numuru un paliek ļaužu atmiņā kā labi un sirsnīgi cilvēki. Koma(nda)s biedrus un citas <a href="http://fizmati.lv/faili/foto/18/large/12.jpg" class="img">svarīgas mantas</a> ieteicams <a href="http://fizmati.lv/faili/foto/42/large/2.jpg" class="img">turēt pēc iespējas vienkopus</a>. Protams, jo mazāk lietu ņem līdzi, jo mazākas iespējas kaut ko pazaudēt. Citējot ļaudis ar skarbu LB rūdījumu: „Nekad uz Laivu braucienu neņem līdzi neko, ko nevēlies pazaudēt - telefonu, naudu, draudzeni... u.c.” Īpaši svarīgās lietas <a href="http://fizmati.lv/faili/foto/44/large/6.jpg" class="img">pietin pie ķermeņa ar makgaivereni</a>, lai nepazūd. Ja būsiet nokāvis savu peldlīdzekli, iespējams, ka nāksies doties <a href="https://lh6.googleusercontent.com/-N718kLY9rk4/TPfZnYdGW5I/AAAAAAAAChU/gOyqt6oZwwE/s544/FMDOgre04_net_10.jpg" class="img">ciešā izbraucienā</a> ar visiem saviem īpašumiem, vai sliktākajā gadījumā tos <a href="https://lh5.googleusercontent.com/-0ep16d2Vvag/URviRpqb4wI/AAAAAAAACzk/ld6Bd5qwGNM/s901/IMG_0900_edited-1.jpg" class="img">nest pa ceļu</a>. Mazāk mantu - mazāk grūtību.
+        </div>
+        <div class="message">
+            <h3>14. Dzīve nometnē jeb Krutums un Kretīns tevī.</h3>
+            <div class="pantins">
+                Mētāties vai augšā celties,<br/>
+                Moku dzert vai upē velties,<br/>
+                Izvēle ir katram dota,<br/>
+                pasteidzies to izmantot!<br/>
+            </div>
+            <a href="http://fizmati.lv/faili/foto/77/large/87.jpg" class="img">Mūzika</a> – tas gandrīz vienmēr ir forši. <a href="http://fizmati.lv/faili/foto/100/large/78.jpg" class="img">Vakars pie ugunskura</a> ir skaists brīdis, kad parunāt un padziedāt ar sen neredzētiem un citiem pazīstamiem ļaudīm par šīs dienas un arī <a href="https://lh4.googleusercontent.com/-HuoQKJHwytc/URk7biULGWI/AAAAAAAACzY/La2vCZc-Dag/s1299/05.JPG" class="img">senākiem notikumiem</a>. Aktīvāku izklaižu piekritējiem ir, <a href="http://fizmati.lv/faili/foto/133/large/55.jpg" class="img">pirts celšana</a>, <a href="http://fizmati.lv/faili/foto/15/large/47.jpg" class="img">dubļu cīņas</a> un <a href="http://fizmati.lv/faili/foto/146/large/56.jpg" class="img">naktstrase</a>. Ja esi <a href="http://fizmati.lv/faili/foto/43/large/7.jpg" class="img">spējīgs pavārs</a>, tev ir visas iespējas <a href="https://lh6.googleusercontent.com/-SrplQNoR4p0/URviT7tjkmI/AAAAAAAAC0k/SiG_MrufbWI/s800/_3312500376.jpg" class="img">izcīnīt Zupmeistara kausu</a>. Vai arī <a href="https://lh4.googleusercontent.com/-UKWtWqsMKBU/TPfZ1QFPIyI/AAAAAAAACik/g1N5Wk6Vzyk/s550/FMDOgre04_net_24.jpg" class="img">nē</a>. Zelta vidusceļš ir M (<a href="http://fizmati.lv/faili/foto/133/large/18.jpg" class="img">mētāties</a>), MA (<a href="http://fizmati.lv/faili/foto/146/large/28.jpg" class="img">mētāties anonīmi</a>), MMA (<a href="http://fizmati.lv/faili/foto/62/large/26.jpg" class="img">mētāties maisā anonīmi</a>), D&amp;M (<a href="http://fizmati.lv/faili/foto/146/large/29.jpg" class="img">dzert un mētāties</a>), <a href="http://fizmatdienas.lv/img/galleries/large/1267.jpg" class="img">D&amp;D&amp;M</a>, kā arī citas burtu kombinācijas, līdz <a href="http://fizmati.lv/faili/foto/16/large/19.jpg" class="img">rīta saule apmirdz teltis</a>. Vēl var arī <a href="http://fizmati.lv/faili/foto/62/large/50.jpg" class="img">izcīnīt bronzu</a>. <a href="http://fizmati.lv/faili/foto/99/large/53.jpg" class="img">Jauni paziņas</a> parasti uzzīmējas paši. Protams, jebkura <a href="http://fizmati.lv/faili/foto/62/large/95.jpg" class="img">sabiedriska aktivitāte</a> ir ceļš uz popularitāti, tomēr arī šoreiz ir vērts atcerēties, ka <a href="http://fizmati.lv/faili/foto/77/large/88.jpg" class="img">emocijas</a>, kas raisās apkārtējos, ne vienmēr ir tik pozitīvas, kā pašam varētu šķist. Tomēr tāpēc nevajag iet pazust mežā. <a href="http://fizmati.lv/faili/foto/12/large/3.jpg" class="img">Cibiņa sindroms</a> – tas nav forši. UN SAVĀCIET AIZ SEVIS <a href="http://fizmati.lv/faili/foto/8/large/14.jpg" class="img">ATKRITUMUS!!!</a> Ja nu Jūs nevienam nepatīkat, ir iespēja <a href="http://fizmati.lv/faili/foto/99/large/132.jpg" class="img">stopēt</a>, meklējot vietu pie citiem, laipnākiem ļaudīm.
+        </div>
+        <div class="message">
+            <h3>15. Mīli savu tuvāko jeb Māte Terēze un viņas atalgojums.</h3>
+            <div class="pantins">
+                Kas pa zemi pālī vārtās,<br/>
+                Ievīstīt to trijās kārtās,<br/>
+                Izsalkušos pabarot,<br/>
+                Māte Terēze to prot!<br/>
+            </div>
+            Ja tev ir <a href="https://lh3.googleusercontent.com/-Xjuri8baXRM/URviSEfut-I/AAAAAAAAC0A/Dqj2hrqXGEw/s498/P5010179.JPG" class="img">uznācis vārgumiņš</a>, tava miesa ir slābana un <a href="http://fizmati.lv/faili/foto/99/large/69.jpg" class="img">domas klejo tukšumā</a> - nebēdā. Uzticama kā <a href="http://fizmati.lv/faili/foto/16/large/6.jpg" class="img">drauga plecs</a> pēc diviem polšiem palīgā steigs Māte Terēze, kas tevi <a href="http://fizmati.lv/faili/foto/12/large/37.jpg" class="img">paēdinās</a>, <a href="https://lh3.googleusercontent.com/--cbKwDjX7O4/URviSJHvWTI/AAAAAAAACz8/3xODWYrxzFY/s664/P5010182.JPG" class="img">apguldinās</a>, mierinās un <a href="http://fizmati.lv/faili/foto/99/large/78.jpg" class="img">sasildīs</a>. Mātes Terēzes ir sastopamas katrā laivu braucienā, vajag tikai <a href="http://fizmati.lv/faili/foto/165/large/307.jpg" class="img">lūdzoši ieskatīties</a> viņu skaidrajās un godīgajās acīs. Diemžēl pieredze rāda, ka, līdzīgi kā ar Pelnrušķīti, <a href="http://fizmati.lv/faili/foto/146/large/82.jpg" class="img">no rīta</a> visa burvība ir zudusi, un Mātes Terēzes labos darbus neviens tā īsti neatceras.
+        </div>
+        <div class="message">
+            <h3>16. Traumas jeb “paturi aliņu!”</h3>
+            <div class="pantins">
+                Vakar piedzēries kā kretīns?<br/>
+                Palīdzēs tev ibumetīns!<br/>
+                Bet, ja plecs no vietas laukā,<br/>
+                Ārstēs dakterīte jaukā.<br/>
+            </div>
+            Lai cik veikls tu sev nešķistu, lai cik <a href="http://fizmatdienas.lv/img/galleries/large/1382.jpg" class="img">stilīga sarkana jaka</a> tev nebūtu mugurā, pastāv iespēja, ka tu iedzīvosies lielākā vai mazākā paša <a href="http://fizmatdienas.lv/img/galleries/large/1537.jpg" class="img">tizluma izraisītā nepatikšanā</a>. Šādās reizēs ļoti cieņā ir skaidrs šoferis, kas ir spējīgs aiztransportēt cietušo līdz tuvākajai ārstniecības iestādei. Vēl vecmāmiņa teica, ka uz karstiem pirts akmeņiem sēsties nevajagot un peldētnepratējiem vesti vilkt esot stipri ieteicams. Visbiežāk gan <a href="http://fizmati.lv/faili/foto/42/large/20.jpg" class="img">veselības problēmas</a> rada saindēšanās ar <a href="https://lh5.googleusercontent.com/-YNLB9WWnQkw/URlSW-vJhBI/AAAAAAAACzI/Snvv5zDMpSs/s1301/vlcsnap-2013-02-11-22h17m41s26.png" class="img">pārtiku</a> visās šī jēdziena izpratnēs.
+        </div>
+        <div class="message">
+            <h3>17. Dzīvā daba jeb Mana komanda un citi lopi.</h3>
+            <div class="pantins">
+                Gribi justies zvērīgi?<br/>
+                Tagad klausies vērīgi -<br/>
+                Moka vēderā kad lieta,<br/>
+                Zoodārzā būs tev vieta.<br/>
+            </div>
+            Laivu brauciens jau izsenis bez <a href="http://fizmati.lv/faili/foto/99/large/140.jpg" class="img">ģeogrāfiskiem atklājumiem</a> ir bijis slavens arī ar to, ka tajā notiek sastapšanās ar dažādiem <a href="http://fizmati.lv/faili/foto/77/large/31.jpg" class="img">lielākiem</a> un <a href="http://fizmati.lv/faili/foto/99/large/137.jpg" class="img">mazākiem</a> zvēriem, <a href="http://fizmati.lv/faili/foto/9/large/2.jpg" class="img">putniem</a> un <a href="http://fizmati.lv/faili/foto/77/large/85.jpg" class="img">draugiem</a>. <a href="http://fizmati.lv/faili/foto/133/large/79.jpg" class="img">Daži no tiem</a> pat piedalās braucienā. Citu vietā piedalās viņu <a href="http://fizmati.lv/faili/foto/77/large/32.jpg" class="img">avatars</a> vai <a href="http://fizmati.lv/faili/foto/165/large/299.jpg" class="img">lelle</a>. Viņu klātbūtni jāuztver kā pašsaprotamu. Viņus nevajag traucēt un <a href="http://fizmati.lv/faili/foto/16/large/46.jpg" class="img">biedēt prom</a>. Novērojama arī <a href="http://fizmati.lv/faili/foto/133/large/67.jpg" class="img">Latgales badadzeguze</a>. Plaši pārstāvēta ūdens fauna - <a href="http://fizmati.lv/faili/foto/15/large/38.jpg" class="img">nāras</a>, <a href="http://fizmati.lv/faili/foto/133/large/74.jpg" class="img">roņi</a>, <a href="http://fizmati.lv/faili/foto/77/large/20.jpg" class="img">jūras vāravas</a>, <a href="http://fizmati.lv/faili/foto/99/large/58.jpg" class="img">zivis</a> un pat <a href="https://lh3.googleusercontent.com/-fqCuOn_Pyng/URviUECP3lI/AAAAAAAAC0o/vJhL1mcySLU/s800/_9396797072.jpg" class="img">ūdenscilvēki</a>. Viņi <a href="http://fizmati.lv/faili/foto/133/large/64.jpg" class="img">jūtas kā starp savējiem</a>. Diez, kāpēc?
+        </div>
+        <div class="message">
+            <h3>Nobeigums - kopsavilkums (principā visu iepriekšējo varēja arī nelasīt).</h3>
+            Dzeriet ar mēru. domājiet līdzi un novērtējiet savas un arī upes spējas. Tad viss būs kārtībā. Ja jūs burtiski ievērosiet visus augstāk minētos ieteikumus, šis būs neinteresantākais jebkad notikušais laivu brauciens. Bet satraukumam nav pamata. Katru gadu tas notiek no jauna, un arī šo rindu autors ir pārkapis gandrīz visus paša rakstītos ieteikumus. Bet atpakaļ atbraukt vajag. DROŠĪBA PIRMAJĀ VIETĀ.
+        </div>
+    </div>
+</body>

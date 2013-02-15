@@ -1,0 +1,125 @@
+﻿
+html, body
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+body
+{
+    font-family: "Segoe UI", Helvettica, Sans-Serif;
+    padding: 5px;
+    background-color: #909090;
+}
+
+#imgOverlay
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 110%;
+    background-color: rgba(0,0,0,.5);
+    display: none;
+    z-index: 5;
+}
+
+a
+{
+    color: #F26100;
+}
+
+body.ios h1 { margin-top:50px; }
+
+h3 {
+    font-weight: normal;
+}
+
+h1, h2, div.message
+{
+    background-color: rgba(255,255,255,.7);
+    color: #121212;
+    padding: 5px 10px;
+    font-weight: normal;
+}
+
+div.pantins {
+    margin-bottom: 1em;
+    padding-left: 0.5em;
+    font-style: italic;
+    background-color: rgba(255,255,255,.5);
+}
+
+div.message
+{
+    margin-bottom: 1em;
+    font-size: 14pt;
+    line-height: 19pt;
+}
+
+/*back poga*/
+div.bar
+{
+    display:none;
+    position: fixed;
+    top: 0px;
+    left:0px;
+    right: 0px;
+    height: 42px;
+    border-right: 0;
+    border-left: 0;
+    text-align: center;
+    background: rgba(255,255,255,0.8);
+    padding-left:2px;
+    z-index: 3;
+}
+div.body
+{
+    position: relative;
+    margin: 6px 0 0 12px;
+    height: 26px;
+    width: 45px;
+    border: 1px solid rgba(0,0,0, 0.4);
+    -webkit-border-radius: 5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9fb3cc), to(#5b80ab), color-stop(0.5, #6b8bb2), color-stop(0.51, #597eaa));
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255, 0.25), inset 0 1px 1px rgba(0,0,0, 0.2);
+}
+div.body div
+{
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    left: -7px;
+    -webkit-transform: rotate(51deg);
+}
+div.body span
+{
+    -webkit-transform: skew(15deg);
+    display: block;
+    width: 15px;
+    height: 16px;
+    background: -webkit-gradient(linear, left top, right bottom, from(#9fb3cc), to(#5b80ab), color-stop(0.5, #6b8bb2), color-stop(0.51, #597eaa));
+    -webkit-border-radius: 1px;
+    border: 1px solid rgba(0,0,0, 0.4);
+    border-right: 0;
+    border-top: 0;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255, 0.25);
+}
+div.body p
+{
+    position: absolute;
+    z-index: 2;
+    top: 5px;
+    left: 5px;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0, 0.4);
+}
+
+body.ios div.bar 
+{
+    display:block;
+}
